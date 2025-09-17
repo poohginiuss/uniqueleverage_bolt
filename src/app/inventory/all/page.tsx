@@ -326,10 +326,10 @@ export function InventoryAllPageContent() {
                           setSelectedVehicleId(v.id);
                           window.scrollTo(0, 0);
                         }} 
-                        className="group relative bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg hover:border-blue-500 hover:ring-2 hover:ring-blue-500 hover:ring-offset-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-left w-full min-w-0 h-[250px] p-0"
+                        className="group relative bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg hover:border-blue-500 hover:ring-2 hover:ring-blue-500 hover:ring-offset-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-left w-full min-w-0 flex flex-col p-0"
                       >
                         {/* Image Container */}
-                        <div className="relative h-40 w-full bg-gray-100 overflow-hidden">
+                        <div className="relative w-full bg-gray-100 overflow-hidden" style={{ aspectRatio: '16/9' }}>
                           {v.images && v.images.length > 0 ? (
                             <img 
                               src={v.images[0]} 
@@ -346,7 +346,7 @@ export function InventoryAllPageContent() {
                         </div>
                         
                         {/* Content */}
-                        <div className="p-2.5">
+                        <div className="p-2.5 flex-1 flex flex-col justify-between">
                           {/* Vehicle Title & Key Info */}
                           <div className="mb-1.5">
                             <h3 className="font-semibold text-gray-900 text-[11px] leading-tight mb-1 line-clamp-2">
