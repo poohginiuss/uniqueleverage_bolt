@@ -32,7 +32,7 @@ export const MobileNavigationHeader = ({
 }) => {
     return (
         <AriaDialogTrigger>
-            <header className={`flex h-16 items-center justify-between border-b border-secondary bg-primary px-4 lg:hidden relative z-50`}>
+            <header className={`flex h-16 items-center justify-between border-b border-secondary bg-primary px-5 lg:hidden relative z-50`}>
                 {/* Left side - consistent positioning */}
                 <div className="flex items-center justify-start flex-1">
                     {showBackButton && onBack ? (

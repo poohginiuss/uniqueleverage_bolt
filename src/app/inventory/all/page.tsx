@@ -280,7 +280,7 @@ export function InventoryAllPageContent() {
           </section>
         </header>
 
-        <div className="px-4 sm:px-6 lg:px-8 py-8 2xl:py-12 pt-8 md:pt-8">
+        <div className="px-4 sm:px-6 lg:px-8 py-8 pt-8 md:pt-8">
           <div className="mx-auto max-w-7xl">
           {loading ? (
             <div className="flex items-center justify-center py-12">

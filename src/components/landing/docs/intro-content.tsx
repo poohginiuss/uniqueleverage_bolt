@@ -8,7 +8,7 @@ import { FaApple, FaWindows } from "react-icons/fa";
 
 export const ULIntroPage = () => {
   return (
-    <div className="flex items-start px-4 py-16 lg:px-8 2xl:py-20">
+    <div className="flex items-start px-4 py-16 lg:px-8">
       <main className="relative mx-auto flex w-full min-w-0 flex-1 flex-col lg:flex-row max-w-180">
         {/* Main column */}
         <div className="size-full text-tertiary">

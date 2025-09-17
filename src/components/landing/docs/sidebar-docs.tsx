@@ -98,7 +98,7 @@ export const SidebarNavigationSimple = ({
                 } as React.CSSProperties
             }
             className={cx(
-                "flex h-full w-full max-w-full flex-col justify-between overflow-auto bg-primary pt-4 lg:w-(--width) lg:pt-6 page-transition",
+                "flex h-full w-full max-w-full flex-col justify-between overflow-auto bg-primary pt-5 lg:w-(--width) page-transition",
                 !hideBorder && "border-secondary md:border-r",
                 className,
             )}
