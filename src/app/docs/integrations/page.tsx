@@ -34,10 +34,10 @@ export default () => {
                         ],
                     },
                     {
-                        label: "Integrations",
+                        label: "Partners",
                         href: "/projects",
                         items: [
-                            { label: "Partners", href: "/docs/integrations" },
+                            { label: "Integrations", href: "/docs/integrations" },
                         ],
                     },
                 ]}

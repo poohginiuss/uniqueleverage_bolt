@@ -6,7 +6,8 @@ import { StepNavigation } from "@/components/landing/docs/installation-step"
 // - Uses semantic HTML and accessible buttons for the FAQ accordion
 // - You can swap the placeholder links/logos with your own
 
-export const ULInstallPage = () => {
+export const ULInstallPage = ({ customTechCards }: { customTechCards?: typeof techCards } = {}) => {
+  const cardsToUse = customTechCards || techCards;
   return (
     <div className="flex items-start px-4 py-16 lg:px-8 2xl:py-20">
       <main className="relative mx-auto flex w-full min-w-0 flex-1 flex-col lg:flex-row max-w-180">
@@ -56,12 +57,12 @@ export const ULInstallPage = () => {
           <Section id="partners" title="Partners">
             <p>Step-by-step guides for connecting.</p>
             <div className="grid grid-cols-1 gap-3 mt-8 lg:grid-cols-2">
-              {techCards.map((c) => (
+              {cardsToUse.map((c) => (
                 <TechCard key={c.title} {...c} />
               ))}
               <a
-                href="{href}"
-                className="group relative flex flex-col items-start rounded-xl bg-primary_alt p-5 ring-1 ring-secondary outline-focus-ring transition duration-100 ease-linear ring-inset focus-visible:outline-2 focus-visible:outline-offset-2 not-dark:hover:bg-primary_hover lg:col-span-2 no-underline"
+                href="/docs/integrations"
+                className="group relative flex flex-col items-start rounded-xl bg-primary_alt p-5 ring-1 ring-secondary outline-focus-ring transition duration-100 ease-linear ring-inset focus-visible:outline-2 focus-visible:outline-offset-2 not-dark:hover:bg-primary_hover hover:ring-blue-300 hover:shadow-md lg:col-span-2 no-underline"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -88,21 +89,19 @@ export const ULInstallPage = () => {
 
           <Divider />
 
-          <Section id="tech-stack" title="Inventory setup guide">
-            <p className="mt-3">
-              Follow these steps to connect your dealerships inventory feed to and start syncing vehicles automatically.
-            </p>
+          {/* Setup guide */}
+          <Section id="setup-guide" title="Inventory setup guide">
+            <p>Follow these steps to connect your dealerships inventory feed to and start syncing vehicles automatically.</p>
             <StepNavigation />
           </Section>
 
           <Divider />
 
           {/* FAQs */}
-          <div className="not-typography mx-auto w-full max-w-[72rem]">
+          <div id="faqs" className="not-typography mx-auto w-full max-w-[72rem]">
             <h2 className="text-lg font-semibold text-primary md:text-xl">FAQs</h2>
             <p className="mt-3 text-base text-tertiary">
-              Please refer to our {" "}
-              <a className="font-medium text-primary underline underline-offset-4" href="">frequently asked questions</a> page for more.
+              Please refer to our frequently asked questions page for more.
             </p>
 
             <div className="mt-8 flex flex-col">
@@ -112,6 +111,29 @@ export const ULInstallPage = () => {
             </div>
           </div>
 
+          {/* CTA */}
+          <div className="flex w-full items-center mt-24">
+            <a
+              className="group relative inline-flex items-center gap-1 rounded-lg px-3.5 py-2.5 text-sm font-semibold bg-primary text-secondary ring-1 ring-inset ring-primary hover:bg-primary/90 ml-auto"
+              href="/docs/integrations"
+            >
+              <span className="px-0.5">Integrations</span>
+              <svg
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                stroke="currentColor"
+                strokeWidth="2"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+                className="size-5"
+              >
+                <path d="M5 12h14m0 0-7-7m7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
           
         </div>
 
@@ -131,8 +153,8 @@ export const ULInstallPage = () => {
             <ol className="flex flex-col gap-2 border-l border-secondary pl-3">
               {[
                 { id: "partners", label: "Partners" },
-                { id: "tech-stack", label: "Setup guide" },
-                { id: "accessibility", label: "Request status" },
+                { id: "setup-guide", label: "Setup guide" },
+                { id: "faqs", label: "FAQs" },
               ].map((t) => (
                 <li key={t.id}>
                   <a href={`#${t.id}`} className="text-sm font-semibold text-quaternary hover:text-brand-secondary">
@@ -170,9 +192,7 @@ function Section({ id, title, children }: { id: string; title: string; children:
 function TechCard({ href, title, version, details }: { href: string; title: string; version: string; details?: string }) {
   return (
     <a
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group relative flex flex-col items-start rounded-xl bg-primary_alt p-5 ring-1 ring-secondary outline-focus-ring transition duration-100 ease-linear ring-inset hover:bg-primary_hover no-underline"
+      className="group relative flex flex-col items-start rounded-xl bg-primary_alt p-5 ring-1 ring-secondary outline-focus-ring transition duration-100 ease-linear ring-inset hover:bg-primary_hover hover:ring-blue-300 hover:shadow-md no-underline"
       href={href}
     >
       <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="absolute top-4 right-4 size-4 text-fg-quaternary">
@@ -241,9 +261,48 @@ function FaqItem({ question, answer }: { question: string; answer: React.ReactNo
   );
 }
 
-const techCards = [
+export const techCards = [
   {
-    href: "",
+    href: "/docs/dealercenter",
+    details: "",
+    title: "DealerCenter",
+    version: "Click to open DealerCenter instructions.",
+  },
+  {
+    href: "/docs/carsforsale",
+    details: "",
+    title: "CarsforSale",
+    version: "Click to open CarsforSale instructions.",
+  },
+  {
+    href: "/docs/automanager",
+    details: "",
+    title: "AutoManager",
+    version: "Click to open AutoManager instructions.",
+  },
+  {
+    href: "/docs/dealercarsearch",
+    details: "",
+    title: "DealerCarSearch",
+    version: "Click to open DealerCarSearch instructions.",
+  },
+  {
+    href: "/docs/dealeron",
+    details: "",
+    title: "DealerON",
+    version: "Click to open DealerON instructions.",
+  },
+  {
+    href: "/docs/vauto",
+    details: "",
+    title: "vAuto",
+    version: "Click to open vAuto instructions.",
+  },
+] as const;
+
+export const dealerCenterTechCards = [
+  {
+    href: "/docs/dealercenter",
     details: "",
     title: "DealerCenter",
     version: "Click to open DealerCenter instructions.",
@@ -254,83 +313,48 @@ const techCards = [
     title: "CarsforSale",
     version: "Click to open CarsforSale instructions.",
   },
-  {
-    href: "",
-    details: "",
-    title: "AutoManager",
-    version: "Click to open AutoManager instructions.",
-  },
-  {
-    href: "",
-    details: "",
-    title: "DealerCarSearch",
-    version: "Click to open DealerCarSearch instructions.",
-  },
-  {
-    href: "",
-    details: "",
-    title: "DealerON",
-    version: "Click to open DealerON instructions.",
-  },
-  {
-    href: "",
-    details: "",
-    title: "vAuto",
-    version: "Click to open vAuto instructions.",
-  },
 ] as const;
 
 const faqs = [
   {
-    q: "What...",
-    a: (
-      <>
-        <p>
-          <a href="" className="text-primary underline">...</a> ...
-        </p>
-        <p className="mt-3">...</p>
-      </>
-    ),
+    q: "What inventory management systems do you support?",
+    a: "We support all major automotive DMS and inventory systems including DealerCenter, CarsforSale, AutoManager, DealerCarSearch, DealerON, vAuto, Trailer Ops, Auto Raptor, and many more. If your system isn't listed, contact our support team for custom integration."
   },
   {
-    q: " is Unique Leverage?",
-    a: (
-      <>
-        <p>
-          ...
-        </p>
-      </>
-    ),
+    q: "How does the inventory feed connection work?",
+    a: "Our system connects directly to your DMS or inventory management system through secure APIs or FTP feeds. We pull vehicle data including photos, specifications, pricing, and availability status automatically."
   },
   {
-    q: "What...?",
-    a: (
-      <ul className="list-disc pl-5">
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-      </ul>
-    ),
+    q: "What vehicle data do you sync from my inventory?",
+    a: "We sync comprehensive vehicle information including VIN, year, make, model, trim, mileage, price, photos, features, condition reports, financing options, and real-time availability status."
   },
   {
-    q: "What...?",
-    a: <p>...</p>,
+    q: "How often is my inventory updated?",
+    a: "We check for new feeds from your provider every 4 hours. However, the actual update frequency depends on how often your provider sends out feeds - typically 1-2 times per day, though this varies by provider."
   },
   {
-    q: "Does...?",
-    a: <p>...</p>,
+    q: "Can I connect multiple dealership locations?",
+    a: "Yes, you can connect multiple dealership locations and inventory feeds from different systems. Each location can have its own feed configuration and branding."
   },
   {
-    q: "What...?",
-    a: <p>...</p>,
+    q: "What happens when a vehicle is sold?",
+    a: "When a vehicle is marked as sold in your DMS, it will be removed from our platform the next time we receive your feed update. This prevents customers from seeing unavailable vehicles."
   },
   {
-    q: "Can I ...?",
-    a: (
-      <p>
-        ....
-      </p>
-    ),
+    q: "Do you support vehicle photos and videos?",
+    a: "Yes, we automatically sync all photos and videos from your inventory system. We also support 360° virtual tours and walkaround videos when available in your DMS."
   },
+  {
+    q: "How do you handle pricing and special offers?",
+    a: "We sync your current pricing, rebates, incentives, and special offers directly from your DMS. Pricing changes are reflected on our platform when we receive your next feed update."
+  },
+  {
+    q: "What if I need to manually override vehicle information?",
+    a: "While most data syncs automatically, you can manually edit vehicle descriptions, add custom features, or update photos through our admin dashboard. Manual changes are preserved during automatic syncs."
+  },
+  {
+    q: "Is my inventory data secure?",
+    a: "Yes, we use enterprise-grade security with encrypted connections, secure APIs, and comply with automotive industry data protection standards. Your inventory data is never shared with competitors."
+  }
 ];
+

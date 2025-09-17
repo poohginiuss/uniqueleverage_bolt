@@ -73,24 +73,23 @@ export const ULIntroPage = () => {
             <div className="grid grid-cols-1 gap-3 mt-8 mb-3 lg:grid-cols-2">
               <ActionCard
                 href=""
-                title="Marketplace Posting Tool"
-                subtitle="uniqueleverage.com/download"
+                title="Download for Windows"
+                subtitle="Windows 10+"
                 icon={(
                   <FaWindows className="text-sm" />
                 )}
               />
               <ActionCard
                 href=""
-                title="Marketplace Posting Tool"
-                subtitle="uniqueleverage.com/download"
+                title="Download for Mac"
+                subtitle="macOS 12+"
                 icon={(
                   <FaApple className="text-sm" />
                 )}
               />
             </div>
-            <a
-  href="/docs/request-feeds"
-  className="group relative flex flex-col items-start rounded-xl bg-primary_alt p-5 ring-1 ring-secondary outline-focus-ring transition duration-100 ease-linear ring-inset focus-visible:outline-2 focus-visible:outline-offset-2 not-dark:hover:bg-primary_hover lg:col-span-2 no-underline"
+            <div
+  className="group relative flex flex-col items-start rounded-xl bg-primary_alt p-5 ring-1 ring-secondary outline-focus-ring transition duration-100 ease-linear ring-inset focus-visible:outline-2 focus-visible:outline-offset-2 not-dark:hover:bg-primary_hover lg:col-span-2 cursor-default"
 >
   {/* Top-left icon */}
   <img
@@ -127,12 +126,17 @@ export const ULIntroPage = () => {
   </div>
 
   <button
-    className="group relative inline-flex items-center gap-1 rounded-lg px-3.5 py-2.5 text-sm font-semibold bg-primary text-secondary ring-1 ring-inset ring-primary hover:bg-primary/90 no-underline"
-    onClick={() => window.location.href = '/docs/request-feeds'}
+    className="group relative inline-flex items-center gap-1 rounded-lg px-3.5 py-2.5 text-sm font-semibold bg-primary text-secondary ring-1 ring-inset ring-primary hover:bg-blue-600 hover:text-white hover:ring-blue-600 hover:shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 no-underline cursor-pointer"
+    onClick={(e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log('Get PRO button clicked!');
+      window.open('/pricing', '_blank');
+    }}
   >
     <span className="px-0.5">Get PRO</span>
   </button>
-</a>
+</div>
             {/* <div className="grid grid-cols-1 gap-3 mt-8 lg:grid-cols-2">
               {techCards.map((c) => (
                 <TechCard key={c.title} {...c} />
@@ -162,15 +166,15 @@ export const ULIntroPage = () => {
 
           <Section id="next-steps" title="Next steps">
             <p>
-              Start by following our <a href="/react/docs/installation" className="text-primary underline">request feed</a> guide to connect your inventory.
+              Start by following our <a href="/docs/request-feeds" className="text-primary underline">request feed</a> guide to connect your inventory.
             </p>
             <p className="mt-3">
               Once your feed is connected, install the Unique Leverage app for Windows or macOS. This lets you manage inventory and post vehicles directly to Marketplace.
             </p>
             <div className="grid grid-cols-1 gap-3 mt-8 lg:grid-cols-2">
             <a
-              href="{href}"
-              className="group relative flex flex-col items-start rounded-xl bg-primary_alt p-5 ring-1 ring-secondary outline-focus-ring transition duration-100 ease-linear ring-inset focus-visible:outline-2 focus-visible:outline-offset-2 not-dark:hover:bg-primary_hover lg:col-span-2 no-underline"
+              href="/docs/integrations"
+              className="group relative flex flex-col items-start rounded-xl bg-primary_alt p-5 ring-1 ring-secondary outline-focus-ring transition duration-100 ease-linear ring-inset focus-visible:outline-2 focus-visible:outline-offset-2 not-dark:hover:bg-primary_hover hover:ring-blue-300 hover:shadow-md lg:col-span-2 no-underline"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -200,8 +204,7 @@ export const ULIntroPage = () => {
           <div className="not-typography mx-auto w-full max-w-[72rem]">
             <h2 className="text-lg font-semibold text-primary md:text-xl">FAQs</h2>
             <p className="mt-3 text-base text-tertiary">
-              Please refer to our {" "}
-              <a className="font-medium text-primary underline underline-offset-4" href="">frequently asked questions</a> page for more.
+              Please refer to our frequently asked questions page for more.
             </p>
 
             <div className="mt-8 flex flex-col">
@@ -315,7 +318,7 @@ function ActionCard({ href, title, subtitle, icon }: { href: string; title: stri
     <a
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative flex flex-col items-start rounded-xl bg-primary_alt p-5 ring-1 ring-secondary outline-focus-ring transition duration-100 ease-linear ring-inset hover:bg-primary_hover no-underline"
+      className="group relative flex flex-col items-start rounded-xl bg-primary_alt p-5 ring-1 ring-secondary outline-focus-ring transition-all duration-200 ease-linear ring-inset hover:shadow-lg hover:border-blue-500 hover:ring-2 hover:ring-blue-500 hover:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 no-underline"
       href={href}
     >
       <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="absolute top-4 right-4 size-4 text-fg-quaternary">
@@ -395,55 +398,125 @@ const techCards = [
 
 const faqs = [
   {
-    q: "What...",
+    q: "What is Unique Leverage?",
     a: (
       <>
         <p>
-          <a href="" className="text-primary underline">...</a> ...
+          Unique Leverage is an automotive marketing platform that connects your vehicle inventory to Facebook and Instagram with automated content generation. We help dealerships create powerful carousel and single-image ads that drive customers directly to vehicle-specific scheduling pages.
         </p>
-        <p className="mt-3">...</p>
-      </>
-    ),
-  },
-  {
-    q: " is Unique Leverage?",
-    a: (
-      <>
-        <p>
-          ...
+        <p className="mt-3">
+          Our platform includes an Ad Wizard for creating targeted campaigns, Vehicle Scheduling Pages (VSPs) for seamless test drive bookings, and native pixel tracking for complete campaign analytics.
         </p>
       </>
     ),
   },
   {
-    q: "What...?",
+    q: "How does the Ad Wizard work?",
     a: (
-      <ul className="list-disc pl-5">
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-      </ul>
+      <>
+        <p>
+          The Ad Wizard lets you create targeted campaigns in two ways:
+        </p>
+        <ul className="list-disc pl-5 mt-3">
+          <li><strong>Single Vehicle:</strong> Promote individual vehicles with custom ads</li>
+          <li><strong>Vehicle Sets:</strong> Create campaigns for groups of vehicles (Sedans, Trucks, SUVs, or custom sets)</li>
+        </ul>
+        <p className="mt-3">
+          Simply search your inventory, select vehicles, and the wizard generates Facebook-ready ads with vehicle images, pricing, and direct links to scheduling pages.
+        </p>
+      </>
     ),
   },
   {
-    q: "What...?",
-    a: <p>...</p>,
-  },
-  {
-    q: "Does...?",
-    a: <p>...</p>,
-  },
-  {
-    q: "What...?",
-    a: <p>...</p>,
-  },
-  {
-    q: "Can I ...?",
+    q: "What are Vehicle Scheduling Pages (VSPs)?",
     a: (
-      <p>
-        ....
-      </p>
+      <>
+        <p>
+          VSPs are dedicated landing pages for each vehicle in your inventory. When customers click on your ads, they're taken directly to a VSP where they can:
+        </p>
+        <ul className="list-disc pl-5 mt-3">
+          <li>View detailed vehicle information and photos</li>
+          <li>Schedule test drives through integrated Calendly</li>
+          <li>Contact your dealership directly</li>
+          <li>Access financing information</li>
+        </ul>
+        <p className="mt-3">
+          Each VSP is automatically generated from your inventory feed and stays updated in real-time.
+        </p>
+      </>
+    ),
+  },
+  {
+    q: "Which inventory systems do you support?",
+    a: (
+      <>
+        <p>
+          We support all major automotive inventory management systems including:
+        </p>
+        <ul className="list-disc pl-5 mt-3">
+          <li>DealerCenter</li>
+          <li>CarsforSale</li>
+          <li>AutoManager</li>
+          <li>DealerCarSearch</li>
+          <li>DealerON</li>
+          <li>vAuto</li>
+        </ul>
+        <p className="mt-3">
+          <a href="/docs/integrations" className="text-primary underline">View our complete list of supported partners</a> for step-by-step connection guides.
+        </p>
+      </>
+    ),
+  },
+  {
+    q: "How much does Unique Leverage cost?",
+    a: (
+      <>
+        <p>
+          We offer flexible pricing plans to fit dealerships of all sizes. Our pricing includes:
+        </p>
+        <ul className="list-disc pl-5 mt-3">
+          <li>Unlimited vehicle campaigns</li>
+          <li>Automated ad generation</li>
+          <li>VSP hosting and management</li>
+          <li>Calendly integration</li>
+          <li>Analytics and reporting</li>
+        </ul>
+        <p className="mt-3">
+          <a href="/pricing" className="text-primary underline">View our current pricing plans</a> or contact us for custom enterprise solutions.
+        </p>
+      </>
+    ),
+  },
+  {
+    q: "Can I cancel my subscription anytime?",
+    a: (
+      <>
+        <p>
+          Yes, you can cancel your subscription at any time with no cancellation fees. Your campaigns will remain active until the end of your current billing period, and you'll retain access to all analytics and reporting data.
+        </p>
+        <p className="mt-3">
+          We also offer a 30-day money-back guarantee for new customers to ensure you're completely satisfied with our platform.
+        </p>
+      </>
+    ),
+  },
+  {
+    q: "Do I need technical knowledge to use Unique Leverage?",
+    a: (
+      <>
+        <p>
+          Not at all! Unique Leverage is designed for automotive professionals, not tech experts. Our platform features:
+        </p>
+        <ul className="list-disc pl-5 mt-3">
+          <li>Simple, intuitive interface</li>
+          <li>One-click ad generation</li>
+          <li>Automated inventory syncing</li>
+          <li>Pre-built templates and designs</li>
+        </ul>
+        <p className="mt-3">
+          If you can use Facebook and manage inventory, you can use Unique Leverage. Our support team is also available to help with setup and optimization.
+        </p>
+      </>
     ),
   },
 ];

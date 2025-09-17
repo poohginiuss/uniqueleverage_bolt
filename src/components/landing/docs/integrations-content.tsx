@@ -135,42 +135,42 @@ const inventoryProviders = [
   {
     name: "DealerCenter",
     description: "Inventory Management",
-    href: "#",
+    href: "/docs/dealercenter",
   },
   {
     name: "CarsforSale",
     description: "Inventory Management", 
-    href: "#",
+    href: "/docs/carsforsale",
   },
   {
     name: "AutoManager",
     description: "Inventory Management",
-    href: "#",
+    href: "/docs/automanager",
   },
   {
     name: "vAuto",
     description: "Inventory Management",
-    href: "#",
+    href: "/docs/vauto",
   },
   {
     name: "DealerCarSearch",
     description: "Inventory Management",
-    href: "#",
+    href: "/docs/dealercarsearch",
   },
   {
     name: "Trailer Ops",
     description: "Inventory Management",
-    href: "#",
+    href: "/docs/trailerops",
   },
   {
     name: "DealerON",
     description: "Inventory Management",
-    href: "#",
+    href: "/docs/dealeron",
   },
   {
     name: "Auto Raptor",
     description: "Inventory Management",
-    href: "#",
+    href: "/docs/autoraptor",
   },
 ];
 
@@ -178,9 +178,7 @@ const inventoryProviders = [
 function ProviderCard({ name, description, href }: { name: string; description: string; href: string }) {
   return (
     <a
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group relative flex flex-col items-start rounded-xl bg-primary_alt p-5 ring-1 ring-secondary outline-focus-ring transition duration-100 ease-linear ring-inset hover:bg-primary_hover no-underline"
+      className="group relative flex flex-col items-start rounded-xl bg-primary_alt p-5 ring-1 ring-secondary outline-focus-ring transition duration-100 ease-linear ring-inset hover:bg-primary_hover hover:ring-blue-300 hover:shadow-md no-underline"
       href={href}
     >
       <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="absolute top-4 right-4 size-4 text-fg-quaternary">

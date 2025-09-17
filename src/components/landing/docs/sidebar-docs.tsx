@@ -98,13 +98,13 @@ export const SidebarNavigationSimple = ({
                 } as React.CSSProperties
             }
             className={cx(
-                "flex h-full w-full max-w-full flex-col justify-between overflow-auto bg-primary pt-5 lg:w-(--width) page-transition",
+                "flex h-full w-full max-w-full flex-col justify-between overflow-auto bg-primary pt-4 lg:w-(--width) lg:pt-6 page-transition",
                 !hideBorder && "border-secondary md:border-r",
                 className,
             )}
         >
-            <div className="flex flex-col gap-4 px-4">
-                <UntitledLogo />
+            <div className="flex flex-col gap-5 px-5 lg:px-5">
+                <UntitledLogo className="h-6" />
                 <Input 
                     size="sm" 
                     aria-label="Search" 
@@ -148,7 +148,7 @@ export const SidebarNavigationSimple = ({
                 )}
             </div>
 
-            <div className="mt-auto flex flex-col gap-4 px-2 py-4">
+            <div className="mt-auto flex flex-col gap-4 px-2 py-4 lg:px-4 lg:py-6">
             </div>
         </aside>
     );

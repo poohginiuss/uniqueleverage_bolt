@@ -16,18 +16,18 @@ import { FeaturedCardReferralLink } from "@/components/application/app-navigatio
 import { SidebarNavigationSimple } from "@/components/landing/docs/sidebar-docs";
 import { Breadcrumbs } from "@/components/application/breadcrumbs/breadcrumbs";
 import { BadgeWithDot, BadgeWithIcon } from "@/components/base/badges/badges";
-import { ULIntroPage } from "@/components/landing/docs/intro-content";
+import { CarsForSalePage } from "@/components/landing/docs/cars-for-sale-content";
 import { ChevronDown } from "@untitledui/icons";
 
 export default () => {
     return (
         <div className="flex flex-col lg:flex-row">
             <SidebarNavigationSimple
-            activeUrl="/docs/introduction"
+                activeUrl="/docs/carsforsale"
                 items={[
                     {
                         label: "Getting started",
-                        href: "/",
+                        href: "/docs/introduction",
                         items: [
                             { label: "Introduction", href: "/docs/introduction", icon: Star06 },
                             { label: "Request Feed", href: "/docs/request-feeds", icon: Flag05 },
@@ -35,7 +35,7 @@ export default () => {
                     },
                     {
                         label: "Partners",
-                        href: "/projects",
+                        href: "/docs/integrations",
                         items: [
                             { label: "Integrations", href: "/docs/integrations" },
                         ],
@@ -78,8 +78,8 @@ export default () => {
                     >
                         <Breadcrumbs type="button">
                             <Breadcrumbs.Item href="#">Docs</Breadcrumbs.Item>
-                            <Breadcrumbs.Item href="#">Getting started</Breadcrumbs.Item>
-                            <Breadcrumbs.Item href="#">Introduction</Breadcrumbs.Item>
+                            <Breadcrumbs.Item href="/docs/introduction">Getting started</Breadcrumbs.Item>
+                            <Breadcrumbs.Item href="#">CarsforSale</Breadcrumbs.Item>
                         </Breadcrumbs>
                         <button className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                             <span>Account</span>
@@ -87,7 +87,7 @@ export default () => {
                         </button>
                     </section>
                 </header>
-                <ULIntroPage />
+                <CarsForSalePage />
             </main>
         </div>
     );
