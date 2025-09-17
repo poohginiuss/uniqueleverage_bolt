@@ -10,12 +10,12 @@ export const FeaturesTabsMockup = () => {
     return (
         <section className="overflow-hidden bg-primary py-16 md:py-24">
             <div className="mx-auto w-full max-w-container px-4 md:px-8">
-                <div className="flex w-full flex-col lg:max-w-3xl">
+                <div className="mx-auto flex w-full flex-col items-center text-center lg:max-w-3xl">
                     <Badge color="brand" size="lg" type="pill-color">
                         Why use Unique Leverage?
                     </Badge>
  
-                    <h2 className="mt-3 text-display-xs font-semibold pr-22 text-primary md:text-display-md">Better Automation. Smarter Campaigns. Stronger Results.</h2>
+                    <h2 className="mt-3 text-display-xs font-semibold px-10 text-primary md:text-display-md">Better Automation. Smarter Campaigns. Stronger Results.</h2>
                     <p className="mt-4 text-lg text-tertiary md:mt-5 md:text-xl">
                         Powerful tools built for car people to automate Marketplace listings, run sponsored VDP ads, and track what’s actually working.
                     </p>

@@ -64,7 +64,7 @@ export const HeaderSection = () => {
 
                                 {/* Text with Slide-in Animation */}
                                 <span className="text-sm md:text-md font-semibold text-white transform transition-all duration-500 group-hover:translate-x-1 group-hover:opacity-100 opacity-90">
-                                Use AI to chat with your ads data
+                                Try our free auto lister for desktop
                                 </span>
 
                                 {/* Arrow Icon with Slide and Fade */}
@@ -86,7 +86,7 @@ export const HeaderSection = () => {
                             </div>
                         </NewButton>
                         <h1 className="text-display-md text-white font-semibold text-primary mt-9 md:text-display-lg lg:text-display-xl">
-                            Automation for salespeople.{" "}
+                            Automation for automotive.{" "}
                         </h1>
                         <p className="mt-4 text-white max-w-3xl text-lg md:mt-6 md:text-xl">
                             Getting people to your vehicles and turning them into potential customers is what we do best. Carefully crafted for teams and

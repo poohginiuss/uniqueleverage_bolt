@@ -10,7 +10,8 @@
         "type-check": "tsc --noEmit",
         "prettier": "prettier . --write",
         "prettier:check": "prettier . --check",
-        "test": "npm run type-check && npm run lint:check && npm run prettier:check"
+        "test": "npm run type-check && npm run lint:check && npm run prettier:check",
+        "backup": "node cursor-backup.js"
     },
     "dependencies": {
         "@tailwindcss/postcss": "^4.1.11",
@@ -20,6 +21,7 @@
         "motion": "^12.23.5",
         "next": "^15.3.5",
         "next-themes": "^0.4.6",
+        "qr-code-styling": "^1.9.2",
         "react": "19.0.0",
         "react-aria": "^3.41.1",
         "react-aria-components": "^1.10.1",

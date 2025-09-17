@@ -11,7 +11,7 @@ import { cx } from "@/utils/cx";
 
 // Creates a data URL for an SVG resize handle with a given color.
 const getResizeHandleBg = (color: string) => {
-    return `url(data:image/svg+xml;base64,${btoa(`<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 2L2 10" stroke="${color}" stroke-linecap="round"/><path d="M11 7L7 11" stroke="${color}" stroke-linecap="round"/></svg>`)})`;
+    return `url(data:image/svg+xml;base64,${btoa(`<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 2L2 10" stroke="${color}" strokeLinecap="round"/><path d="M11 7L7 11" stroke="${color}" strokeLinecap="round"/></svg>`)})`;
 };
 
 interface TextAreaBaseProps extends AriaTextAreaProps {

@@ -126,16 +126,16 @@ export const Badge = <T extends BadgeTypes>(props: BadgeProps<T>) => {
     const colors = withPillTypes[type];
 
     const pillSizes = {
-        xs: "py-0.2 px-1 text-xs font-medium",
-        sm: "py-0.5 px-2 text-xs font-medium",
-        md: "py-0.5 px-2.5 text-sm font-medium",
-        lg: "py-1 px-3 text-sm font-medium",
+        xs: "py-0.2 px-1 text-xs font-bold",
+        sm: "py-0.5 px-2 text-xs font-bold",
+        md: "py-0.5 px-2.5 text-sm font-bold",
+        lg: "py-1 px-3 text-sm font-bold",
     };
     const badgeSizes = {
-        xs: "py-0.2 px-1 text-xs font-medium",
-        sm: "py-0.5 px-1.5 text-xs font-medium",
-        md: "py-0.5 px-2 text-sm font-medium",
-        lg: "py-1 px-2.5 text-sm font-medium rounded-lg",
+        xs: "py-0.2 px-1 text-xs font-bold",
+        sm: "py-0.5 px-1.5 text-xs font-bold",
+        md: "py-0.5 px-2 text-sm font-bold",
+        lg: "py-1 px-2.5 text-sm font-bold rounded-lg",
     };
 
     const sizes = {

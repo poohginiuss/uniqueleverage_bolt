@@ -7,7 +7,7 @@ interface FeatureCardProps {
     title: string;
     description: string;
 }
-
+  
 export const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description }) => {
     return (
         

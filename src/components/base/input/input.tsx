@@ -108,7 +108,7 @@ export const InputBase = ({
             {Icon && (
                 <Icon
                     className={cx(
-                        "pointer-events-none absolute size-5 text-fg-quaternary",
+                        "pointer-events-none absolute size-4 text-fg-quaternary",
                         isDisabled && "text-fg-disabled",
                         sizes[inputSize].iconLeading,
                         context?.iconClassName,
@@ -123,7 +123,7 @@ export const InputBase = ({
                 ref={ref}
                 placeholder={placeholder}
                 className={cx(
-                    "m-0 w-full bg-transparent text-md text-primary ring-0 outline-hidden placeholder:text-placeholder autofill:rounded-lg autofill:text-primary",
+                    "m-0 w-full bg-transparent text-sm text-primary ring-0 outline-hidden placeholder:text-placeholder autofill:rounded-lg autofill:text-primary",
                     isDisabled && "cursor-not-allowed text-disabled",
                     sizes[inputSize].root,
                     context?.inputClassName,
