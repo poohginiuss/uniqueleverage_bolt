@@ -196,7 +196,8 @@ function VehicleDetailPageContent({ stockNumber }: VehicleDetailPageProps) {
           <div className="mb-8">
             <VehicleGallery 
               images={vehicle.images || []} 
-              title={`${vehicle.year} ${vehicle.make} ${vehicle.model}`} 
+              title={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
+              stockNumber={vehicle.stockNumber}
             />
           </div>
 

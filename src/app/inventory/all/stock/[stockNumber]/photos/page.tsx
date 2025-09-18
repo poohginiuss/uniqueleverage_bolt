@@ -10,6 +10,8 @@ export default function PhotoGalleryPage() {
   const router = useRouter();
   const [vehicle, setVehicle] = useState<Vehicle | null>(null);
   const [loading, setLoading] = useState(true);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const stockNumber = params.stockNumber as string;
 
@@ -35,6 +37,62 @@ export default function PhotoGalleryPage() {
     router.back();
   };
 
+  const openLightbox = (index: number) => {
+    setCurrentImageIndex(index);
+    setLightboxOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+  };
+
+  const goToPrevious = () => {
+    const images = vehicle?.images || [];
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  const goToNext = () => {
+    const images = vehicle?.images || [];
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+
+  // Keyboard navigation
+  useEffect(() => {
+    if (!lightboxOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      switch (e.key) {
+        case 'Escape':
+          closeLightbox();
+          break;
+        case 'ArrowLeft':
+          e.preventDefault();
+          goToPrevious();
+          break;
+        case 'ArrowRight':
+          e.preventDefault();
+          goToNext();
+          break;
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxOpen, vehicle?.images]);
+
+  // Prevent body scroll when lightbox is open
+  useEffect(() => {
+    if (lightboxOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [lightboxOpen]);
+
   if (loading) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
@@ -56,6 +114,24 @@ export default function PhotoGalleryPage() {
 
   const images = vehicle.images || [];
   const title = `${vehicle.year} ${vehicle.make} ${vehicle.model}`;
+
+  // Helper function to create clickable image
+  const createImageElement = (src: string, index: number, className: string = "w-full h-auto object-contain bg-gray-100 hover:opacity-90 transition-opacity cursor-pointer") => (
+    <img
+      src={src}
+      alt={`${title} - Photo ${index + 1}`}
+      className={className}
+      onClick={() => openLightbox(index)}
+      onError={(e) => {
+        const target = e.target as HTMLImageElement;
+        target.style.display = 'none';
+        const parent = target.parentElement;
+        if (parent) {
+          parent.innerHTML = '<div class="flex items-center justify-center w-full h-32 bg-gray-100 text-gray-400 text-sm">Image not available</div>';
+        }
+      }}
+    />
+  );
 
   return (
     <div className="fixed inset-0 bg-white z-50">
@@ -88,19 +164,7 @@ export default function PhotoGalleryPage() {
                       // Image 1: Full width
                       elements.push(
                         <div key={`full-${i}`} className="w-full">
-                          <img
-                            src={images[i]}
-                            alt={`${title} - Photo ${i + 1}`}
-                            className="w-full h-auto object-contain bg-gray-100"
-                            onError={(e) => {
-                              const target = e.target as HTMLImageElement;
-                              target.style.display = 'none';
-                              const parent = target.parentElement;
-                              if (parent) {
-                                parent.innerHTML = '<div class="flex items-center justify-center w-full h-32 bg-gray-100 text-gray-400 text-sm">Image not available</div>';
-                              }
-                            }}
-                          />
+                          {createImageElement(images[i], i)}
                         </div>
                       );
                       i++;
@@ -111,34 +175,10 @@ export default function PhotoGalleryPage() {
                         elements.push(
                           <div key={`pair-${i}`} className="flex gap-2">
                             <div className="w-1/2">
-                              <img
-                                src={images[i]}
-                                alt={`${title} - Photo ${i + 1}`}
-                                className="w-full h-auto object-contain bg-gray-100"
-                                onError={(e) => {
-                                  const target = e.target as HTMLImageElement;
-                                  target.style.display = 'none';
-                                  const parent = target.parentElement;
-                                  if (parent) {
-                                    parent.innerHTML = '<div class="flex items-center justify-center w-full h-32 bg-gray-100 text-gray-400 text-sm">No Image</div>';
-                                  }
-                                }}
-                              />
+                              {createImageElement(images[i], i)}
                             </div>
                             <div className="w-1/2">
-                              <img
-                                src={images[i + 1]}
-                                alt={`${title} - Photo ${i + 2}`}
-                                className="w-full h-auto object-contain bg-gray-100"
-                                onError={(e) => {
-                                  const target = e.target as HTMLImageElement;
-                                  target.style.display = 'none';
-                                  const parent = target.parentElement;
-                                  if (parent) {
-                                    parent.innerHTML = '<div class="flex items-center justify-center w-full h-32 bg-gray-100 text-gray-400 text-sm">No Image</div>';
-                                  }
-                                }}
-                              />
+                              {createImageElement(images[i + 1], i + 1)}
                             </div>
                           </div>
                         );
@@ -146,21 +186,9 @@ export default function PhotoGalleryPage() {
                       } else {
                         // Single image, make it full width
                         elements.push(
-                          <div key={`full-${i}`} className="w-full">
-                            <img
-                              src={images[i]}
-                              alt={`${title} - Photo ${i + 1}`}
-                              className="w-full h-auto object-contain bg-gray-100"
-                              onError={(e) => {
-                                const target = e.target as HTMLImageElement;
-                                target.style.display = 'none';
-                                const parent = target.parentElement;
-                                if (parent) {
-                                  parent.innerHTML = '<div class="flex items-center justify-center w-full h-32 bg-gray-100 text-gray-400 text-sm">Image not available</div>';
-                                }
-                              }}
-                            />
-                          </div>
+                        <div key={`full-${i}`} className="w-full">
+                          {createImageElement(images[i], i)}
+                        </div>
                         );
                         i++;
                       }
@@ -168,19 +196,7 @@ export default function PhotoGalleryPage() {
                       // Image 4: Full width
                       elements.push(
                         <div key={`full-${i}`} className="w-full">
-                          <img
-                            src={images[i]}
-                            alt={`${title} - Photo ${i + 1}`}
-                            className="w-full h-auto object-contain bg-gray-100"
-                            onError={(e) => {
-                              const target = e.target as HTMLImageElement;
-                              target.style.display = 'none';
-                              const parent = target.parentElement;
-                              if (parent) {
-                                parent.innerHTML = '<div class="flex items-center justify-center w-full h-32 bg-gray-100 text-gray-400 text-sm">Image not available</div>';
-                              }
-                            }}
-                          />
+                          {createImageElement(images[i], i)}
                         </div>
                       );
                       i++;
@@ -191,34 +207,10 @@ export default function PhotoGalleryPage() {
                         elements.push(
                           <div key={`pair-${i}`} className="flex gap-2">
                             <div className="w-1/2">
-                              <img
-                                src={images[i]}
-                                alt={`${title} - Photo ${i + 1}`}
-                                className="w-full h-auto object-contain bg-gray-100"
-                                onError={(e) => {
-                                  const target = e.target as HTMLImageElement;
-                                  target.style.display = 'none';
-                                  const parent = target.parentElement;
-                                  if (parent) {
-                                    parent.innerHTML = '<div class="flex items-center justify-center w-full h-32 bg-gray-100 text-gray-400 text-sm">No Image</div>';
-                                  }
-                                }}
-                              />
+                              {createImageElement(images[i], i)}
                             </div>
                             <div className="w-1/2">
-                              <img
-                                src={images[i + 1]}
-                                alt={`${title} - Photo ${i + 2}`}
-                                className="w-full h-auto object-contain bg-gray-100"
-                                onError={(e) => {
-                                  const target = e.target as HTMLImageElement;
-                                  target.style.display = 'none';
-                                  const parent = target.parentElement;
-                                  if (parent) {
-                                    parent.innerHTML = '<div class="flex items-center justify-center w-full h-32 bg-gray-100 text-gray-400 text-sm">No Image</div>';
-                                  }
-                                }}
-                              />
+                              {createImageElement(images[i + 1], i + 1)}
                             </div>
                           </div>
                         );
@@ -226,21 +218,9 @@ export default function PhotoGalleryPage() {
                       } else {
                         // Single image, make it full width
                         elements.push(
-                          <div key={`full-${i}`} className="w-full">
-                            <img
-                              src={images[i]}
-                              alt={`${title} - Photo ${i + 1}`}
-                              className="w-full h-auto object-contain bg-gray-100"
-                              onError={(e) => {
-                                const target = e.target as HTMLImageElement;
-                                target.style.display = 'none';
-                                const parent = target.parentElement;
-                                if (parent) {
-                                  parent.innerHTML = '<div class="flex items-center justify-center w-full h-32 bg-gray-100 text-gray-400 text-sm">Image not available</div>';
-                                }
-                              }}
-                            />
-                          </div>
+                        <div key={`full-${i}`} className="w-full">
+                          {createImageElement(images[i], i)}
+                        </div>
                         );
                         i++;
                       }
@@ -263,6 +243,74 @@ export default function PhotoGalleryPage() {
           )}
         </div>
       </div>
+
+      {/* Lightbox Modal */}
+      {lightboxOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-90 z-[100] flex items-center justify-center">
+          {/* Close Button */}
+          <button
+            onClick={closeLightbox}
+            className="absolute top-4 right-4 z-10 text-white hover:text-gray-300 transition-colors"
+          >
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+            <span className="sr-only">Close</span>
+          </button>
+
+          {/* Image Counter */}
+          <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10 text-white text-sm bg-black bg-opacity-50 px-3 py-1 rounded-full">
+            {currentImageIndex + 1} / {images.length}
+          </div>
+
+          {/* Previous Button */}
+          {images.length > 1 && (
+            <button
+              onClick={goToPrevious}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 text-white hover:text-gray-300 transition-colors p-2"
+            >
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+          )}
+
+          {/* Next Button */}
+          {images.length > 1 && (
+            <button
+              onClick={goToNext}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 text-white hover:text-gray-300 transition-colors p-2"
+            >
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          )}
+
+          {/* Main Image */}
+          <div className="max-w-[90vw] max-h-[90vh] flex items-center justify-center">
+            <img
+              src={images[currentImageIndex]}
+              alt={`${title} - Photo ${currentImageIndex + 1}`}
+              className="max-w-full max-h-full object-contain"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+                const parent = target.parentElement;
+                if (parent) {
+                  parent.innerHTML = '<div class="flex items-center justify-center text-white">Image not available</div>';
+                }
+              }}
+            />
+          </div>
+
+          {/* Click outside to close */}
+          <div 
+            className="absolute inset-0 -z-10" 
+            onClick={closeLightbox}
+          />
+        </div>
+      )}
     </div>
   );
 }
