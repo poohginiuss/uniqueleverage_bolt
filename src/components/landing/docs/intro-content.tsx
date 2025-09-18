@@ -40,7 +40,7 @@ export const ULIntroPage = () => {
             </div>
 
             <div className="flex items-center gap-2">
-              <h1 className="max-w-3xl text-xl font-semibold text-primary md:text-2xl">
+              <h1 className="max-w-3xl text-2xl font-semibold text-primary">
                 Introduction
               </h1>
             </div>
@@ -202,7 +202,7 @@ export const ULIntroPage = () => {
 
           {/* FAQs */}
           <div className="not-typography mx-auto w-full max-w-[72rem]">
-            <h2 className="text-lg font-semibold text-primary md:text-xl">FAQs</h2>
+            <h2 className="text-xl font-semibold text-primary">FAQs</h2>
             <p className="mt-3 text-base text-tertiary">
               Please refer to our frequently asked questions page for more.
             </p>
@@ -276,14 +276,14 @@ export const ULIntroPage = () => {
 
 function Divider() {
   return (
-    <hr className="my-10 md:my-12 border-t-2 border-border-secondary" />
+    <hr className="my-12 border-t-2 border-border-secondary" />
   );
 }
 
 function Section({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
   return (
     <section id={id} className="scroll-mt-20">
-      <h2 className="text-xl font-semibold text-primary md:text-xl">
+      <h2 className="text-xl font-semibold text-primary">
         <a href={`#${id}`}>{title}</a>
       </h2>
       <div className="typography prose prose-invert max-w-none mt-3 not-prose:text-base">

@@ -58,7 +58,8 @@ export default function VehicleGallery({ images, title }: VehicleGalleryProps) {
             <img 
               src={images[currentImageIndex]} 
               alt={title}
-              className="w-full h-[24rem] md:h-[28rem] object-cover object-center transition-transform duration-300 ease-out"
+              className="w-full object-cover object-center transition-transform duration-300 ease-out"
+              style={{ aspectRatio: '16/9' }}
               onClick={() => {
                 // TODO: Open image gallery modal/lightbox
                 console.log('Open gallery for:', title);
@@ -71,7 +72,7 @@ export default function VehicleGallery({ images, title }: VehicleGalleryProps) {
                 target.style.display = 'none';
                 const parent = target.parentElement;
                 if (parent) {
-                  parent.innerHTML = '<div class="flex items-center justify-center h-[24rem] md:h-[28rem] text-slate-400 text-sm">No Image Available</div>';
+                  parent.innerHTML = '<div class="flex items-center justify-center w-full text-slate-400 text-sm" style="aspect-ratio: 16/9;">No Image Available</div>';
                 }
               }}
             />
@@ -108,7 +109,7 @@ export default function VehicleGallery({ images, title }: VehicleGalleryProps) {
             )}
           </>
         ) : (
-          <div className="flex items-center justify-center h-[28rem] text-slate-400 text-sm">
+          <div className="flex items-center justify-center w-full text-slate-400 text-sm" style={{ aspectRatio: '16/9' }}>
             No Image Available
           </div>
         )}

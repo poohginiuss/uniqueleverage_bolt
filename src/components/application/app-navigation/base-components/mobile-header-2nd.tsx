@@ -32,9 +32,9 @@ export const MobileNavigationHeader = ({
 }) => {
     return (
         <AriaDialogTrigger>
-            <header className={`flex h-16 items-center justify-between border-b border-secondary bg-primary px-5 lg:hidden relative z-50`}>
+            <header className={`flex h-16 justify-between border-b border-secondary bg-primary px-5 lg:hidden relative z-50`}>
                 {/* Left side - consistent positioning */}
-                <div className="flex items-center justify-start flex-1">
+                <div className="flex pt-3 justify-start flex-1">
                     {showBackButton && onBack ? (
                         // Show back button for VSP pages
                         <button 
@@ -48,12 +48,12 @@ export const MobileNavigationHeader = ({
                     ) : hideLogo ? (
                         showSearchOnMobile ? (
                             // Show search bar for inventory/all page
-                            <div className="flex items-center gap-3 flex-1">
+                            <div className="flex gap-3 flex-1">
                                 {/* UL Logo - Always visible */}
-                                <div className="flex items-center justify-start overflow-visible h-7 w-max">
+                                <div className="flex justify-start overflow-visible h-7 w-max">
                                     <UntitledLogoMinimal />
                                 </div>
-                                <div className="flex-1 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto px-2">
+                                <div className="flex-1 max-w-xs mx-auto px-2">
                                     <div className="relative">
                                         <div className="absolute inset-y-0 left-0 pl-2 flex items-center pointer-events-none">
                                             <SearchLg className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-gray-400" />
@@ -61,10 +61,10 @@ export const MobileNavigationHeader = ({
                                         <input
                                             type="text"
                                             aria-label="Search"
-                                            placeholder="Search"
+                                            placeholder="Search vehicles..."
                                             value={searchValue}
                                             onChange={(e) => onSearchChange?.(e.target.value)}
-                                            className="w-full pl-8 sm:pl-10 pr-3 py-2 sm:py-2.5 bg-white border border-gray-200 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-xs sm:text-sm text-gray-900 placeholder-gray-500"
+                                            className="w-full pl-8 sm:pl-10 pr-3 py-2 bg-white border border-gray-200 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-xs text-gray-900 placeholder-gray-500"
                                         />
                                     </div>
                                 </div>
@@ -75,7 +75,7 @@ export const MobileNavigationHeader = ({
                         )
                     ) : (
                         // Default layout with logo
-                        <UntitledLogo />
+                        <UntitledLogo className="pt-3" />
                     )}
                 </div>
 

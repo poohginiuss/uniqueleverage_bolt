@@ -103,10 +103,9 @@ export const SidebarNavigationSimple = ({
                 className,
             )}
         >
-            <div className="flex flex-col gap-5 px-5 lg:px-5">
+            <div className="flex flex-col gap-5 px-5">
                 <UntitledLogo className="h-6" />
                 <Input 
-                    size="sm" 
                     aria-label="Search" 
                     placeholder="Search vehicles..." 
                     icon={SearchLg}

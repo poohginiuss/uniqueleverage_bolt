@@ -7,7 +7,7 @@ import React, { useState } from "react";
 
 export const ULIntegrationsPage = () => {
   return (
-    <div className="flex items-start px-4 py-16 lg:px-8 2xl:py-20">
+    <div className="flex items-start px-4 py-16 lg:px-8">
       <main className="relative mx-auto flex w-full min-w-0 flex-1 flex-col lg:flex-row max-w-180">
         {/* Main column */}
         <div className="size-full text-tertiary">
@@ -25,7 +25,7 @@ export const ULIntegrationsPage = () => {
             </div>
 
             <div className="flex items-center gap-2">
-              <h1 className="max-w-3xl text-xl font-semibold text-primary md:text-2xl">
+              <h1 className="max-w-3xl text-2xl font-semibold text-primary">
                 Integrations
               </h1>
             </div>
@@ -209,6 +209,6 @@ function Section({ id, title, children }: { id: string; title: string; children:
 // Divider Component
 function Divider() {
   return (
-    <hr className="my-10 md:my-12 border-t-2 border-border-secondary" />
+    <hr className="my-12 border-t-2 border-border-secondary" />
   );
 }

@@ -280,7 +280,7 @@ export function InventoryAllPageContent() {
           </section>
         </header>
 
-        <div className="px-4 sm:px-6 lg:px-8 py-8 pt-8 md:pt-8">
+        <div className="px-6 lg:px-8 py-8 pt-8 md:pt-8">
           <div className="mx-auto max-w-7xl">
           {loading ? (
             <div className="flex items-center justify-center py-12">
@@ -311,7 +311,7 @@ export function InventoryAllPageContent() {
                   This is your live feed. Quickly access vehicles, launch marketing campaigns, and manage scheduling from a single dashboard.                                                                                                       
                 </p>
               </div>
-              <div className="h-px bg-slate-200 my-8 sm:my-10 lg:my-12" />
+              <div className="h-px bg-slate-200 my-10 lg:my-12" />
 
 
               {/* Content */}
@@ -346,7 +346,7 @@ export function InventoryAllPageContent() {
                         </div>
                         
                         {/* Content */}
-                        <div className="p-2.5 flex-1 flex flex-col justify-between">
+                        <div className="p-2.5 flex flex-col justify-between">
                           {/* Vehicle Title & Key Info */}
                           <div className="mb-1.5">
                             <h3 className="font-semibold text-gray-900 text-[11px] leading-tight mb-1 line-clamp-2">

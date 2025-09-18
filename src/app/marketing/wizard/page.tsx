@@ -26,7 +26,7 @@ export default function WizardPage() {
                 </section>
             </header>
 
-            <div className="px-4 sm:px-6 lg:px-8 py-8 2xl:py-12 pt-8 md:pt-8">
+            <div className="px-6 lg:px-8 py-8 pt-8 md:pt-8">
                 <div className="mx-auto max-w-7xl">
                     <MarketingIntroPageNoTOC />
                 </div>
@@ -254,7 +254,7 @@ const MarketingIntroPageNoTOC = () => {
           Connect your inventory to Facebook and Instagram with automated content generation.
         </p>
       </div>
-      <div className="h-px bg-slate-200 my-8 sm:my-10 lg:my-12" />
+      <div className="h-px bg-slate-200 my-10 lg:my-12" />
         
         {/* Compact Promotion Type Selection */}
         <div className="mb-6">
