@@ -137,19 +137,21 @@ export default function PhotoGalleryPage() {
     <div className="fixed inset-0 bg-white z-50">
       {/* Header */}
       <div className="absolute top-0 left-0 right-0 z-10 bg-white bg-opacity-90 backdrop-blur-sm">
-        <div className="flex items-center p-4">
+        <div className="flex items-center pt-3 pl-5">
           <button
             onClick={handleBackClick}
-            className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
+            className="inline-flex items-center justify-center w-10 h-10 text-black hover:text-gray-700 transition-all rounded-full hover:bg-gray-100"
           >
-            <ArrowLeft className="w-5 h-5 mr-2" />
+            <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
           </button>
         </div>
       </div>
 
       {/* Photo Grid - Responsive Container */}
       <div className="pt-16 h-full overflow-y-auto">
-        <div className="p-2 md:px-[calc((100vw-750px)/2)] md:py-2">
+        <div className=" md:px-[calc((100vw-750px)/2)] md:py-2">
             {images.length > 0 ? (
               <div className="max-w-[750px] mx-auto space-y-2">
                 {(() => {
