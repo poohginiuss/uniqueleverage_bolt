@@ -540,7 +540,7 @@ const VehicleDetail = ({ vehicle, onBack }: { vehicle: Vehicle | null; onBack: (
       </div>
 
       {/* Gallery */}
-      <VehicleGallery images={vehicle.images || []} title={title} />
+      <VehicleGallery images={vehicle.images || []} title={title} stockNumber={stock} />
 
 
       {/* Mobile: Floating Card */}

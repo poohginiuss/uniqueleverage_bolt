@@ -1,12 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { useCalendlyOptimized } from '@/hooks/use-calendly-optimized';
 
 interface VehicleGalleryProps {
   images: string[];
   title: string;
+  stockNumber: string;
 }
 
-export default function VehicleGallery({ images, title }: VehicleGalleryProps) {
+export default function VehicleGallery({ images, title, stockNumber }: VehicleGalleryProps) {
+  const router = useRouter();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const touchStartX = useRef<number>(0);
   const touchEndX = useRef<number>(0);
@@ -49,6 +52,11 @@ export default function VehicleGallery({ images, title }: VehicleGalleryProps) {
       setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
     }
   };
+
+  const navigateToPhotoGallery = () => {
+    router.push(`/inventory/all/stock/${stockNumber}/photos`);
+  };
+
   return (
     <div>
       {/* Mobile: Single main image - full screen width, starts at header bottom */}
@@ -60,10 +68,7 @@ export default function VehicleGallery({ images, title }: VehicleGalleryProps) {
               alt={title}
               className="w-full object-cover object-center transition-transform duration-300 ease-out"
               style={{ aspectRatio: '16/9' }}
-              onClick={() => {
-                // TODO: Open image gallery modal/lightbox
-                console.log('Open gallery for:', title);
-              }}
+              onClick={navigateToPhotoGallery}
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
@@ -119,7 +124,7 @@ export default function VehicleGallery({ images, title }: VehicleGalleryProps) {
       <div className="hidden md:block relative">
         <div className="flex gap-1 h-64">
           {/* Main Image - left side */}
-          <div className="flex-1 bg-slate-200 overflow-hidden">
+          <div className="flex-1 bg-slate-200 overflow-hidden cursor-pointer hover:opacity-90 transition-opacity" onClick={navigateToPhotoGallery}>
             {images && images.length > 0 ? (
               <img 
                 src={images[0]} 
@@ -145,7 +150,7 @@ export default function VehicleGallery({ images, title }: VehicleGalleryProps) {
           {/* Small Images - right side, 2x2 grid */}
           <div className="flex-1 grid grid-cols-2 grid-rows-2 gap-1">
             {(images || []).slice(1, 5).map((image, i) => (
-              <div key={i} className="bg-slate-100 overflow-hidden">
+              <div key={i} className="bg-slate-100 overflow-hidden cursor-pointer hover:opacity-90 transition-opacity" onClick={navigateToPhotoGallery}>
                 <img 
                   src={image} 
                   alt={`${title} - Image ${i + 2}`}
